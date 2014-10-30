@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.1/phpunit.xsd"
+         backupGlobals="false"
+         stopOnFailure="false"
+         colors="true"
+         bootstrap="tests/bootstrap.php"
+>
+    <testsuites>
+        <testsuite name="HttpMultipart Component Test Suite">
+            <directory>./tests/Symfony/Component/HttpFoundation</directory>
+            <directory>./tests/GuzzleHttp/Tests/Message</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

@@ -1,0 +1,44 @@
+<?php
+
+namespace GuzzleHttp\Tests\Ring\Client;
+
+use GuzzleHttp\Client;
+use GuzzleHttp\Message\MultipartMessageFactory;
+
+class MultipartMessageFactoryTest extends \PHPUnit_Framework_TestCase {
+
+    public function testConsecutiveCalls()
+    {
+        $this->enqueueResponse();
+        $client = new Client(['message_factory' => new MultipartMessageFactory()]);
+        $respone = $client->get(Server::$url);
+
+        $this->assertEquals('hello', (string) $respone->getBody());
+        $this->assertEquals('hejsan', (string) $respone->getBody());
+    }
+
+    public function testWhileLoop()
+    {
+        $this->enqueueResponse();
+        $client = new Client(['message_factory' => new MultipartMessageFactory()]);
+        $respone = $client->get(Server::$url);
+
+        $count = 0;
+        while ($body = (string) $respone->getBody()) {
+            $this->assertNotEmpty($body);
+            $count++;
+        }
+        $this->assertEquals(2, $count);
+    }
+
+    protected function enqueueResponse()
+    {
+        Server::flush();
+        $response = [
+            'status' => 200,
+            'headers' => ['Content-Type' => 'multipart/related; boundary="delimiter"'],
+            'body' => "--delimiter\r\nLanguage: en\r\n\r\nhello\r\n--delimiter\r\nLanguage: se\r\n\r\nhejsan\r\n--delimiter--",
+        ];
+        Server::enqueue([$response]);
+    }
+}

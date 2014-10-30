@@ -1,0 +1,28 @@
+{
+    "name": "dickolsson/http-multipart",
+    "type": "library",
+    "description": "Symfony HTTP Multipart Component",
+    "keywords": ["symfony", "http"],
+    "homepage": "http://github.com/dickolsson/http-multipart",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Dick Olsson",
+            "email": "dick.olsson@senzilla.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "guzzlehttp/guzzle": "5.0.*@dev",
+        "symfony/http-foundation": "2.5.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.3.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "GuzzleHttp\\Message\\": "src/",
+            "Symfony\\Component\\HttpFoundation\\": "src/"
+        }
+    }
+}
