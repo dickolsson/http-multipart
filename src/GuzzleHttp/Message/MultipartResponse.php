@@ -47,7 +47,7 @@ class MultipartResponse extends Response
         preg_match('/--(.*)\b/', $stream, $boundary);
 
         if (!empty($boundary)) {
-            $messages = array_filter(array_map('trim', explode($boundary[0], $stream_contents)));
+            $messages = array_filter(array_map('trim', explode($boundary[0], $stream)));
 
             foreach ($messages as $message) {
                 if ($message == '--') {
