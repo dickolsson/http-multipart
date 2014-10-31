@@ -1,7 +1,7 @@
 HTTP Multipart Components
 =========================
 
-[![Build Status](https://travis-ci.org/dickolsson/http-multipart.svg?branch=master)](https://travis-ci.org/dickolsson/http-multipart)
+[![Build Status](https://travis-ci.org/dickolsson/http-multipart.svg?branch=2.0)](https://travis-ci.org/dickolsson/http-multipart)
 
 This project contains PHP components to handle multipart requests and responses in PHP.
 
