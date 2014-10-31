@@ -14,7 +14,7 @@ class MultipartResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('mixed', $response->subtype);
         $this->assertNotEmpty($response->boundary);
 
-        $response = new MultipartResponse('related');
+        $response = new MultipartResponse(null, 200, array(), 'related');
         $this->assertEquals('related', $response->subtype);
     }
 
@@ -51,8 +51,7 @@ class MultipartResponseTest extends \PHPUnit_Framework_TestCase
         $parts[] = new Response('hello', 200, array('content-type' => 'text/plain', 'language' => 'en'));
         $parts[] = new Response('hejsan', 200, array('content-type' => 'text/plain', 'language' => 'se'));
 
-        $response = new MultipartResponse('related');
-        $response->setParts($parts);
+        $response = new MultipartResponse($parts, 200, array(), 'related');
         $response->prepare($request);
 
         ob_start();

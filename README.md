@@ -27,13 +27,10 @@ Server responses are implemented as an extension of
 
 ```php
 $request = new Request();
-$response = new MultipartResponse();
-
-$parts = [];
-$part = new Response('hello', 200, ['Language' => 'en']);
-$part = new Response('hejsan', 200, ['Language' => 'se']);
-
-$response->setParts($parts);
+$response = new MultipartResponse(
+    new Response('hello', 200, ['Language' => 'en']),
+    new Response('hejsan', 200, ['Language' => 'se'])
+);
 
 $response->prepare($request);
 $response->send(); // Will send all parts as one multipart response.

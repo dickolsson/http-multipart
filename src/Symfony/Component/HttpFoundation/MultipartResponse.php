@@ -22,12 +22,16 @@ class MultipartResponse extends Response
     /**
      * Constructor.
      */
-    public function __construct($subtype = null, $status = 200, $headers = array())
+    public function __construct(array $parts = null, $status = 200, $headers = array(), $subtype = null)
     {
         parent::__construct(null, $status, $headers);
 
         $this->subtype = $subtype ?: 'mixed';
         $this->boundary = md5(microtime());
+
+        if (null !== $parts) {
+            $this->setParts($parts);
+        }
     }
 
     /**
@@ -44,13 +48,13 @@ class MultipartResponse extends Response
     /**
      * Sets a part of the multipart response.
      *
-     * @param Response $response A response object to be part of the multipart response.
+     * @param Response $part A response object to be part of the multipart response.
      *
      * @return MultipartResponse
      */
-    public function setPart(Response $response)
+    public function setPart(Response $part)
     {
-        $this->parts[] = $response;
+        $this->parts[] = $part;
 
         return $this;
     }
@@ -58,14 +62,14 @@ class MultipartResponse extends Response
     /**
      * Sets multiple parts of the multipart response.
      *
-     * @param Response[] $responses A response object to be part of the multipart response.
+     * @param Response[] $parts Response objects to be part of the multipart response.
      *
      * @return MultipartResponse
      */
-    public function setParts(array $responses)
+    public function setParts(array $parts)
     {
-        foreach ($responses as $response) {
-            $this->setPart($response);
+        foreach ($parts as $part) {
+            $this->setPart($part);
         }
         return $this;
     }
