@@ -20,9 +20,10 @@ class MultipartResponse extends Response
         if (null === $body) {
             $this->removeHeader('Content-Length');
             $this->removeHeader('Transfer-Encoding');
-        }
-        foreach (self::parseMultipartBody($body) as $parts) {
-            $this->bodies[] = Stream::factory($parts['body']);
+        } else {
+            foreach (self::parseMultipartBody($body) as $parts) {
+                $this->bodies[] = Stream::factory($parts['body']);
+            }
         }
     }
 
