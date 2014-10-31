@@ -12,20 +12,20 @@ class MultipartMessageFactoryTest extends \PHPUnit_Framework_TestCase {
     {
         $this->enqueueResponse();
         $client = new Client(['message_factory' => new MultipartMessageFactory()]);
-        $respone = $client->get(Server::$url);
+        $response = $client->get(Server::$url);
 
-        $this->assertEquals('hello', (string) $respone->getBody());
-        $this->assertEquals('hejsan', (string) $respone->getBody());
+        $this->assertEquals('hello', (string) $response->getBody());
+        $this->assertEquals('hejsan', (string) $response->getBody());
     }
 
     public function testWhileLoop()
     {
         $this->enqueueResponse();
         $client = new Client(['message_factory' => new MultipartMessageFactory()]);
-        $respone = $client->get(Server::$url);
+        $response = $client->get(Server::$url);
 
         $count = 0;
-        while ($body = (string) $respone->getBody()) {
+        while ($body = (string) $response->getBody()) {
             $this->assertNotEmpty($body);
             $count++;
         }
