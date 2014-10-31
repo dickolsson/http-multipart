@@ -8,5 +8,3 @@ php:
 before_script:
   - composer self-update
   - composer install --no-interaction --prefer-source --dev
-  - ~/.nvm/nvm.sh install v0.6.14
-  - ~/.nvm/nvm.sh run v0.6.14
