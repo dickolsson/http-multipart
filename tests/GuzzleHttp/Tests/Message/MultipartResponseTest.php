@@ -5,7 +5,7 @@ namespace GuzzleHttp\Tests\Message;
 use GuzzleHttp\Message\MultipartResponse;
 use GuzzleHttp\Stream\Stream;
 
-class MultipartMessageFactoryTest extends \PHPUnit_Framework_TestCase {
+class MultipartResponseTest extends \PHPUnit_Framework_TestCase {
 
     const bodySimple = "--delimiter\r\nLanguage: en\r\n\r\nhello\r\n--delimiter\r\nLanguage: se\r\n\r\nhejsan\r\n--delimiter--";
     const bodySpaced = "--delimiter\r\nLanguage:    en\r\n\r\nhello\r\n--delimiter\r\nLanguage: se\r\n\r\nhejsan\r\n--delimiter--";

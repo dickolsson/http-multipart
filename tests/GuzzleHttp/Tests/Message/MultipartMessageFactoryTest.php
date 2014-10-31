@@ -1,9 +1,10 @@
 <?php
 
-namespace GuzzleHttp\Tests\Ring\Client;
+namespace GuzzleHttp\Tests\Message;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Message\MultipartMessageFactory;
+use GuzzleHttp\Tests\Ring\Client\Server;
 
 class MultipartMessageFactoryTest extends \PHPUnit_Framework_TestCase {
 
