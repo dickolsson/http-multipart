@@ -8,7 +8,18 @@ use GuzzleHttp\Tests\Ring\Client\Server;
 
 class MultipartMessageFactoryTest extends \PHPUnit_Framework_TestCase {
 
-    public function testConsecutiveCalls()
+    public function testCreateResponse()
+    {
+        $factory = new MultipartMessageFactory();
+        $response = $factory->createResponse(200, [], null);
+        $this->assertInstanceOf('GuzzleHttp\Message\MultipartResponse', $response);
+
+        $factory = new MultipartMessageFactory();
+        $response = $factory->createResponse(200, [], 'foo');
+        $this->assertInstanceOf('GuzzleHttp\Message\MultipartResponse', $response);
+    }
+
+    public function testClient()
     {
         $this->enqueueResponse();
         $client = new Client(['message_factory' => new MultipartMessageFactory()]);
@@ -16,20 +27,6 @@ class MultipartMessageFactoryTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertEquals('hello', (string) $response->getBody());
         $this->assertEquals('hejsan', (string) $response->getBody());
-    }
-
-    public function testWhileLoop()
-    {
-        $this->enqueueResponse();
-        $client = new Client(['message_factory' => new MultipartMessageFactory()]);
-        $response = $client->get(Server::$url);
-
-        $count = 0;
-        while ($body = (string) $response->getBody()) {
-            $this->assertNotEmpty($body);
-            $count++;
-        }
-        $this->assertEquals(2, $count);
     }
 
     protected function enqueueResponse()
