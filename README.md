@@ -5,6 +5,8 @@ HTTP Multipart Components
 
 This project contains PHP components to handle multipart requests and responses in PHP.
 
+The goal of this project is to eventually file these classes as upstream patches (hence borrowing the upstream namespaces).
+
 ## Client request
 
 To be done.
