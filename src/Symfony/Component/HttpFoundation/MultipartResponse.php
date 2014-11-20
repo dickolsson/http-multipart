@@ -75,6 +75,15 @@ class MultipartResponse extends Response
     }
 
     /**
+     * Returns the parts.
+     *
+     * @return Response[]
+     */
+    public function getParts() {
+      return $this->parts;
+    }
+
+    /**
      * Sends content for the current web response.
      *
      * @return Response
