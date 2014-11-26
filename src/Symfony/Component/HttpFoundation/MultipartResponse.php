@@ -80,7 +80,7 @@ class MultipartResponse extends Response
      * @return Response[]
      */
     public function getParts() {
-      return $this->parts;
+        return $this->parts;
     }
 
     /**
@@ -90,14 +90,16 @@ class MultipartResponse extends Response
      */
     public function sendContent()
     {
+        $content = '';
         foreach ($this->parts as $part) {
-            echo "--{$this->boundary}\r\n";
-            echo "{$part->headers}\r\n";
-            $part->sendContent();
-            echo "\r\n";
+            $content .= "--{$this->boundary}\r\n";
+            $content .= "{$part->headers}\r\n";
+            $content .= $part->getContent();
+            $content .= "\r\n";
         }
-        echo "--{$this->boundary}--";
-
+        $content .= "--{$this->boundary}--";
+        // Finally send all the content.
+        echo strlen($content) . "\r\n" . $content;
         return $this;
     }
 
