@@ -80,7 +80,7 @@ class MultipartResponse extends Response
      * @return Response[]
      */
     public function getParts() {
-      return $this->parts;
+        return $this->parts;
     }
 
     /**
@@ -90,6 +90,8 @@ class MultipartResponse extends Response
      */
     public function sendContent()
     {
+        $size = $this->getSize();
+        echo "$size\r\n";
         foreach ($this->parts as $part) {
             echo "--{$this->boundary}\r\n";
             echo "{$part->headers}\r\n";
@@ -121,5 +123,20 @@ class MultipartResponse extends Response
     public function getContent()
     {
         return false;
+    }
+
+    /**
+     * Returns the length of all the parts in the response body.
+     *
+     * @return int
+     */
+    protected function getSize() {
+        $size = 0;
+        foreach ($this->parts as $part) {
+            $content = $part->getContent();
+            $output = "--{$this->boundary}" . "{$part->headers}" . $content;
+            $size += strlen($output);
+        }
+        return $size;
     }
 }
