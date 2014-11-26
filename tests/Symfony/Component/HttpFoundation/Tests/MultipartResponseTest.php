@@ -64,7 +64,7 @@ class MultipartResponseTest extends \PHPUnit_Framework_TestCase
         $dates[] = $parts[0]->headers->get('date');
         $dates[] = $parts[0]->headers->get('date');
 
-        $expected = "--$boundary\r\nCache-Control: no-cache\r\nContent-Type:  text/plain\r\nDate:          {$dates[0]}\r\nLanguage:      en\r\n\r\nhello\r\n--$boundary\r\nCache-Control: no-cache\r\nContent-Type:  text/plain\r\nDate:          {$dates[1]}\r\nLanguage:      se\r\n\r\nhejsan\r\n--$boundary--";
+        $expected = "361\r\n--$boundary\r\nCache-Control: no-cache\r\nContent-Type:  text/plain\r\nDate:          {$dates[0]}\r\nLanguage:      en\r\n\r\nhello\r\n--$boundary\r\nCache-Control: no-cache\r\nContent-Type:  text/plain\r\nDate:          {$dates[1]}\r\nLanguage:      se\r\n\r\nhejsan\r\n--$boundary--";
 
         $this->assertEquals($expected, $actual);
     }
